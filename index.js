@@ -1,8 +1,6 @@
-/**
- * Created by Blidkaga on 2017. 3. 19..
- */
 // app모듈과, BrowserWindow 모듈 할당
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu, ipcMain} = require('electron');
+const appMenu = require('./menu.js');
 let win;
 
 app.on('ready', () =>{
@@ -27,4 +25,12 @@ app.on('ready', () =>{
 
     //개발자 도구 오픈
    win.webContents.openDevTools();
+   //메뉴 설정
+   Menu.setApplicationMenu(appMenu);
+
+   ipcMain.on('sendMsg',(event, args) =>{
+       //최대인지 확인후 최대화 또는 최대화 취소
+       win.isMaximized() ? win.unmaximize() : win.maximize();
+       event.sender.send('mainMsg', 'MainProcess에서 신호보냄');
+   });
 });
