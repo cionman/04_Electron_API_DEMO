@@ -2,7 +2,7 @@
 
 # Electron API Demo.
 
-간략하게 API들을 사용해보겠습니다.
+Electron API 를 사용해보는 간단한 예제 입니다.
 
 ## Menu(Main), shell(Both), dialog(Main) 활용 예제
 
